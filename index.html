@@ -1,109 +1,66 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sneakon</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            color: #d1ff00;
-            background-color: #f0f0f0;
-        }
-        .banner {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background-image: url('https://sneakonbrowsers.github.io/Browser%20(3).png');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .banner-text {
-            position: absolute;
-            top: 20px;
-            font-size: 2vw; /* Reduced font size */
-            font-weight: bold;
-            text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px; /* Reduced padding */
-        }
-        .header {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 2vw;
-        }
-        .buttons {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-        }
-        .button {
-            background-color: #d1ff00;
-            color: #000;
-            padding: 10px 20px;
-            margin: 5px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.5vw;
-        }
-        .menu-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2vw;
-            cursor: pointer;
-            color: #d1ff00;
-            z-index: 1;
-        }
-        .menu-content {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 5px;
-            padding: 10px;
-        }
-        .menu-content a {
-            color: #d1ff00;
-            text-decoration: none;
-            display: block;
-            padding: 5px 0;
-        }
-        .menu-content a:hover {
-            background-color: #555;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConSurf - Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #181818;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 500px;
+    }
+
+    .logo {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 20px 0 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      background-color: #1d9bf0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #1278c0;
+    }
+  </style>
 </head>
-<body class="no-outline">
-    <div class="banner">
-        <div class="header">Sneakon</div>
-        <div class="banner-text">Imaginated, Created</div>
-        <div class="menu-icon" onclick="toggleMenu()">☰</div>
-        <div class="menu-content" id="menuContent">
-            <a href="https://sneakonbrowsers.github.io/sneakonkids">Sneakon Kids</a>
-            <a href="https://sneakonbrowsers.github.io/sneakonedu">Sneakon EDU</a>
-        </div>
-        <div class="buttons">
-            <a href="/download" class="button">Download Now!</a>
-            <a href="/socials" class="button">Socials</a>
-        </div>
-    </div>
-    <script>
-        function toggleMenu() {
-            var menuContent = document.getElementById('menuContent');
-            if (menuContent.style.display === 'none' || menuContent.style.display === '') {
-                menuContent.style.display = 'block';
-            } else {
-                menuContent.style.display = 'none';
-            }
-        }
-    </script>
+<body>
+  <div class="container">
+    <img src="https://consurf.github.io/CSurfLogoOnBlack.png" alt="ConSurf Logo" class="logo">
+    <h1>ConSurf</h1>
+    <p>Your new favorite browser is on its way. Stay tuned for updates!</p>
+    <a href="https://discord.gg/WUrxm59A8r" class="cta-button" target="_blank">Join our Discord</a>
+  </div>
 </body>
 </html>
