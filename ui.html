@@ -2,55 +2,67 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ConSurf Homepage</title>
+  <title>ConSurf New Tab</title>
   <style>
-    html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #121212;
-  color: #f0f0f0;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-    header {
-      background-color: #1a1a1a;
-      padding: 16px;
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #f0f0f0;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
-      height:100%;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .logo {
+      font-size: 48px;
+      font-weight: 600;
+      margin-bottom: 24px;
+      color: #f0f0f0;
+    }
+
+    .search-container {
+      width: 600px;
+      max-width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     input[type="text"] {
-      width: 80%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #444;
+      padding: 14px 18px;
+      border-radius: 32px;
+      border: none;
       background-color: #2a2a2a;
       color: #f0f0f0;
+      font-size: 16px;
+      box-shadow: 0 0 0 1px #444;
     }
 
     input[type="text"]:focus {
       outline: none;
-      border-color: #666;
+      box-shadow: 0 0 0 2px #666;
     }
 
     .button-row {
       display: flex;
-      gap: 12px;
-      margin-top: 8px;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 16px;
     }
 
     button {
-      padding: 10px 16px;
+      padding: 10px 20px;
       border: none;
-      border-radius: 8px;
+      border-radius: 24px;
       background-color: #2a2a2a;
       color: #f0f0f0;
-      cursor: pointer;
       font-size: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 0 1px #444;
     }
 
     button:hover {
@@ -58,30 +70,29 @@
     }
 
     .theme-select {
-      margin-top: 12px;
-      background-color: #1a1a1a;
+      margin-top: 24px;
+      background-color: #2a2a2a;
       color: #f0f0f0;
       border: 1px solid #444;
       border-radius: 6px;
       padding: 6px;
     }
 
+    .footer {
+      position: absolute;
+      bottom: 12px;
+      font-size: 12px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>ConSurf</h1>
+  <div class="logo">ConSurf</div>
+
+  <div class="search-container">
     <input id="urlBar" type="text" placeholder="Enter URL and press Enter" />
     <input id="searchBar" type="text" placeholder="Search the web..." />
-    <div class="button-row">
-      <button onclick="window.location.href='https://consurf.github.io/fireboom'">🔥 FireBoom Games</button>
-      <select class="theme-select" onchange="switchTheme(this.value)">
-        <option value="default">🌑 ConSurf Dark</option>
-        <option value="light">🌕 Light</option>
-        <option value="retro">🕹️ Retro</option>
-      </select>
-    </div>
-  </header>
+  </div>
 
   <script>
     document.getElementById("urlBar").addEventListener("keydown", function (e) {
@@ -115,7 +126,7 @@
           el.style.border = "1px solid #00ff00";
         });
       } else {
-        location.reload(); // reload to reset to default dark theme
+        location.reload(); // reset to default
       }
     }
   </script>
