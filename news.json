@@ -1,10 +1,16 @@
 {
   "news": [
    {
+      "date": "19/10/2025",
+      "title": "ConSurf Out Now!",
+      "content": "ConSurf is out now!"
+    },
+
+    {
       "date": "18/10/2025",
       "title": "ConSurf Alpha Out Now!",
       "content": "ConSurf Alpha is out now!"
-    }
+    },
     
 
     {
