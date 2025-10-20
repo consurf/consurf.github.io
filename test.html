@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Close App Test</title>
+</head>
+<body>
+  <button id="closeAppBtn">Close App</button>
+
+  <script>
+    document.getElementById('closeAppBtn').addEventListener('click', () => {
+      // Send a message to the parent window
+      window.parent.postMessage({ action: 'closeApp' }, '*');
+    });
+  </script>
+</body>
+</html>
