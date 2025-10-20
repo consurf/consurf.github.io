@@ -2,16 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Close App Test</title>
+  <title>App Messaging Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
-  <button id="closeAppBtn">Close App</button>
+  <h2>App Messaging Test</h2>
+  <button onclick="sendMessage('closeApp')">Close App</button>
+  <button onclick="sendMessage('warn')">Send Warning</button>
+  <button onclick="sendMessage('error')">Send Error</button>
+  <button onclick="sendMessage('info')">Send Info</button>
 
   <script>
-    document.getElementById('closeAppBtn').addEventListener('click', () => {
-      // Send a message to the parent window
-      window.parent.postMessage({ action: 'closeApp' }, '*');
-    });
+    function sendMessage(action) {
+      window.parent.postMessage({ action }, '*');
+    }
   </script>
 </body>
 </html>
