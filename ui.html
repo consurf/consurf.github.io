@@ -95,6 +95,23 @@
   </div>
 
   <script>
+    // -------------------------------
+    // ConSurf Version Gate (< 1.2)
+    // -------------------------------
+    function getConSurfVersion() {
+      const ua = navigator.userAgent;
+      const match = ua.match(/ConSurf\/([0-9.]+)/);
+      return match ? parseFloat(match[1]) : 0;
+    }
+
+    const version = getConSurfVersion();
+    if (version < 1.2) {
+      window.location.href = "update.html";
+    }
+
+    // -------------------------------
+    // URL Bar
+    // -------------------------------
     document.getElementById("urlBar").addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         let url = this.value.trim();
@@ -105,6 +122,9 @@
       }
     });
 
+    // -------------------------------
+    // Search Bar
+    // -------------------------------
     document.getElementById("searchBar").addEventListener("keydown", function (e) {
       if (e.key === "Enter") {
         const query = encodeURIComponent(this.value.trim());
@@ -112,6 +132,9 @@
       }
     });
 
+    // -------------------------------
+    // Theme Switcher
+    // -------------------------------
     function switchTheme(theme) {
       const body = document.body;
       if (theme === "light") {
@@ -126,7 +149,7 @@
           el.style.border = "1px solid #00ff00";
         });
       } else {
-        location.reload(); // reset to default
+        location.reload();
       }
     }
   </script>
