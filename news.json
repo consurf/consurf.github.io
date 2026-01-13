@@ -2,6 +2,12 @@
   "news": [
    {
       "date": "19/10/2025",
+      "title": "ConSurf 1.2 out now!",
+      "content": "1.2 adds Plugins and a bunch more!"
+   },
+
+   {
+      "date": "19/10/2025",
       "title": "ConSurf Out Now!",
       "content": "ConSurf is out now!"
     },
@@ -16,7 +22,7 @@
     {
       "date": "24/09/2025",
       "title": "ConSurf Alpha Releasing Soon",
-      "content": "ConSurf Alpha is set to release soon. Stay tuned for more updates!   "
+      "content": "ConSurf Alpha is set to release soon. Stay tuned for more updates!"
     }
   ]
 }
