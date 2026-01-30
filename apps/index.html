@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ConSurf Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --primary-dark: #1565c0;
+            --primary-light: #e3f2fd;
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
+            --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --radius-lg: 18px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui, sans-serif;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .store-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .store-title-main {
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .content {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 12px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft);
+            padding: 16px 10px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .coming-soon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--primary);
+            color: white;
+            padding: 2px 6px;
+            font-size: 10px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        .app-icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 16px;
+            background: #e0e0e0;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #555;
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div style="display:flex; align-items:center;">
+        <div class="store-logo">C</div>
+        <div class="store-title-main">ConSurf Store</div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="app-grid" id="appGrid"></div>
+</div>
+
+<script>
+    let apps = [];
+
+    fetch("apps.json")
+        .then(r => r.json())
+        .then(data => {
+            apps = data;
+            renderApps();
+        });
+
+    function renderApps() {
+        const grid = document.getElementById("appGrid");
+        grid.innerHTML = "";
+
+        apps.forEach(app => {
+            const card = document.createElement("div");
+            card.className = "app-card";
+            card.onclick = () => openApp(app.id);
+
+            if (app.comingSoon) {
+                const badge = document.createElement("div");
+                badge.className = "coming-soon";
+                badge.textContent = "Coming Soon";
+                card.appendChild(badge);
+            }
+
+            const icon = document.createElement("div");
+            icon.className = "app-icon";
+            icon.textContent = app.icon ? "" : app.name.charAt(0).toUpperCase();
+
+            if (app.icon) {
+                const img = document.createElement("img");
+                img.src = app.icon;
+                icon.appendChild(img);
+            }
+
+            const name = document.createElement("div");
+            name.className = "app-name";
+            name.textContent = app.name;
+
+            card.appendChild(icon);
+            card.appendChild(name);
+            grid.appendChild(card);
+        });
+    }
+
+    function openApp(id) {
+        window.location.href = `app.html?id=${id}`;
+    }
+</script>
+
+</body>
+</html>

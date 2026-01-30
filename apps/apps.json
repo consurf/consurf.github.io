@@ -1,0 +1,27 @@
+[
+    {
+        "id": "consurf-counter",
+        "name": "ConSurf Counter",
+        "developer": "ConSurf",
+        "version": "1.0.0",
+        "description": "A clean dual-direction counter with forward/backward control, perfect for tracking anything.",
+        "icon": "consurf-counter.png",
+        "apkUrl": "consurf-counter-1.0.0.apk",
+        "betaApkUrl": "",
+		"betaApkUrlUnused": "consurf-counter-beta.apk",
+        "comingSoon": false,
+        "size": "3.2 MB"
+    },
+    {
+        "id": "glitchbox",
+        "name": "GlitchBox",
+        "developer": "ConSurf Experiments",
+        "version": "0.1.0",
+        "description": "Chaos-friendly experimental playground for testing permissions, layouts, and runtime behaviours.",
+        "icon": "",
+        "apkUrl": "",
+        "betaApkUrl": "",
+        "comingSoon": true,
+        "size": "?.? MB"
+    }
+]

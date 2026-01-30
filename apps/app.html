@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --primary-dark: #1565c0;
+            --primary-light: #e3f2fd;
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #111111;
+            --text-sub: #555555;
+            --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --radius-lg: 18px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            font-family: system-ui, sans-serif;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .back-btn {
+            font-size: 20px;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .content {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 16px;
+        }
+
+        .app-header {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .app-icon-big img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 16px; /* ← this is the magic */
+}
+
+        .install-btn, .beta-btn {
+            margin-top: 14px;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(21, 101, 192, 0.35);
+        }
+
+        .install-btn {
+            background: var(--primary);
+        }
+
+        .install-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .beta-btn {
+            background: #ff9800;
+        }
+
+        .beta-btn:hover {
+            background: #ef6c00;
+        }
+
+        .coming-banner {
+            margin-top: 20px;
+            padding: 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 12px;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="back-btn" onclick="goBack()">←</div>
+    <div class="top-title">App Details</div>
+</div>
+
+<div class="content">
+    <div id="appContainer"></div>
+</div>
+
+<script>
+    let apps = [];
+
+    fetch("apps.json")
+        .then(r => r.json())
+        .then(data => {
+            apps = data;
+            loadApp();
+        });
+
+    function goBack() {
+        window.location.href = "index.html";
+    }
+
+    function loadApp() {
+        const params = new URLSearchParams(window.location.search);
+        const appId = params.get("id");
+        const app = apps.find(a => a.id === appId);
+
+        const container = document.getElementById("appContainer");
+
+        if (!app) {
+            container.innerHTML = "<p>App not found.</p>";
+            return;
+        }
+
+        let buttons = "";
+
+        if (app.comingSoon) {
+            buttons = `<div class="coming-banner">Coming Soon</div>`;
+        } else {
+            if (app.apkUrl) {
+                buttons += `<button class="install-btn" onclick="install('${app.apkUrl}')">⬇ Install</button>`;
+            }
+            if (app.betaApkUrl) {
+                buttons += `<button class="beta-btn" onclick="install('${app.betaApkUrl}')">⬇ Install Beta</button>`;
+            }
+        }
+
+        container.innerHTML = `
+            <div class="app-header">
+                <div class="app-icon-big">
+                    ${app.icon ? `<img src="${app.icon}">` : app.name.charAt(0).toUpperCase()}
+                </div>
+                <div>
+                    <div class="app-title">${app.name}</div>
+                    <div class="app-dev">${app.developer}</div>
+                    ${buttons}
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">About this app</div>
+                <div class="description">${app.description}</div>
+                <div class="meta">Version: ${app.version} • Size: ${app.size}</div>
+            </div>
+        `;
+    }
+
+    function install(url) {
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+</script>
+
+</body>
+</html>
