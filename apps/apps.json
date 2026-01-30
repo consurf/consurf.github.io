@@ -8,7 +8,7 @@
         "icon": "consurf-counter.png",
         "apkUrl": "https://consurf.github.io/apps/consurf-counter-main.apk",
         "betaApkUrl": "",
-		"betaApkUrlUnused": "consurf-counter-beta.apk",
+        "betaApkUrlUnused": "consurf-counter-beta.apk",
         "comingSoon": false,
         "size": "3.2 MB"
     },
