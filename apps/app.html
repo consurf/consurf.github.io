@@ -151,11 +151,11 @@
             buttons = `<div class="coming-banner">Coming Soon</div>`;
         } else {
             if (app.apkUrl) {
-                buttons += `<button class="install-btn" onclick="install('${app.apkUrl}')">⬇ Install</button>`;
-            }
-            if (app.betaApkUrl) {
-                buttons += `<button class="beta-btn" onclick="install('${app.betaApkUrl}')">⬇ Install Beta</button>`;
-            }
+    buttons += `<a class="install-btn" href="${app.apkUrl}">⬇ Install</a>`;
+}
+if (app.betaApkUrl) {
+    buttons += `<a class="beta-btn" href="${app.betaApkUrl}">⬇ Install Beta</a>`;
+}
         }
 
         container.innerHTML = `

@@ -6,7 +6,7 @@
         "version": "1.0.0",
         "description": "A clean dual-direction counter with forward/backward control, perfect for tracking anything.",
         "icon": "consurf-counter.png",
-        "apkUrl": "consurf-counter-1.0.0.apk",
+        "apkUrl": "https://consurf.github.io/apps/consurf-counter-main.apk"
         "betaApkUrl": "",
 		"betaApkUrlUnused": "consurf-counter-beta.apk",
         "comingSoon": false,
