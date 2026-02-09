@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rename Form</title>
+  <style>
+    body {
+      margin: 0;
+      background: #f1f3f4;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .header {
+      background: #673ab7;
+      height: 160px;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 640px;
+      margin: -80px auto 40px auto;
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .banner {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 24px;
+      display: none;
+    }
+
+    h2 {
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .field {
+      margin-bottom: 24px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 15px;
+      box-sizing: border-box;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #673ab7;
+      box-shadow: 0 0 0 1px #673ab7;
+    }
+
+    button {
+      background: #673ab7;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5e35b1;
+    }
+
+    #status {
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+    /* Multi-page */
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .nav-buttons .spacer {
+      flex: 1;
+    }
+
+    /* Big choice buttons */
+    .choice-group-label {
+      font-size: 16px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .choice {
+      border: 1px solid #dadce0;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: #fafafa;
+    }
+
+    .choice:hover {
+      border-color: #673ab7;
+      box-shadow: 0 0 0 1px #673ab7;
+    }
+
+    .choice.selected {
+      border-color: #673ab7;
+      background: #ede7f6;
+      box-shadow: 0 0 0 1px #673ab7;
+    }
+
+    .choice input {
+      display: none;
+    }
+
+    .page-indicator {
+      font-size: 13px;
+      color: #5f6368;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header"></div>
+
+<div class="container">
+  <img id="bannerImg" class="banner" src="" alt="Banner">
+
+  <h2>Rename Form</h2>
+
+  <div id="page1" class="page active">
+    <div class="page-indicator">To Preface, give required identification so we can contact you.</div>
+    <div class="field">
+      <input type="text" id="name" placeholder="Your name" required>
+    </div>
+
+    <div class="field">
+      <input type="text" id="email" placeholder="Your Discord Username" required>
+    </div>
+
+    <div class="nav-buttons">
+      <span class="spacer"></span>
+      <button type="button" id="next1">Next</button>
+    </div>
+  </div>
+
+  <div id="page2" class="page">
+    <div class="page-indicator">The Main Part</div>
+    <div class="field">
+      <div class="choice-group-label">What should we name the Discord Server?</div>
+      <div class="choices" id="choices">
+        <label class="choice">
+          <input type="radio" name="source" value="Connorlato">
+          Connorlato
+        </label>
+        <label class="choice">
+          <input type="radio" name="source" value="Bleb the Wobbly">
+          Bleb the Wobbly
+        </label>
+        <label class="choice">
+          <input type="radio" name="source" value="Connor and Mitch">
+          Connor and Mitch
+        </label>
+        <label class="choice">
+          <input type="radio" name="source" value="Other">
+          Other
+        </label>
+      </div>
+    </div>
+
+    <div class="nav-buttons">
+      <button type="button" id="back2">Back</button>
+      <button type="button" id="next2">Next</button>
+    </div>
+  </div>
+
+  <div id="page3" class="page">
+    <div class="page-indicator">Use this section for the name if you picked Other on the last page</div>
+    <form id="myForm">
+      <div class="field">
+        <textarea id="message" placeholder="Use this section for the name if you picked Other on the last page" required></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="nav-buttons">
+      <button type="button" id="back3">Back</button>
+      <span class="spacer"></span>
+    </div>
+  </div>
+
+  <p id="status"></p>
+</div>
+
+<script>
+const WEBHOOK_URL = "https://discord.com/api/webhooks/1470324607356502183/pz-AbXaCRBB-kaUpNufem7yL2QDUdFVl9r485ToJXASffv2h8A6340cooJXyxQdk1pi6";
+
+/* OPTIONAL BANNER IMAGE */
+const bannerURL = "banner.jpg";
+if (bannerURL.trim() !== "") {
+  const img = document.getElementById("bannerImg");
+  img.src = bannerURL;
+  img.style.display = "block";
+}
+
+/* Page navigation */
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const page3 = document.getElementById("page3");
+
+document.getElementById("next1").addEventListener("click", () => {
+  const name = document.getElementById("name");
+  const email = document.getElementById("email");
+  if (!name.value.trim() || !email.value.trim()) {
+    alert("Please fill in your name and Discord username.");
+    return;
+  }
+  page1.classList.remove("active");
+  page2.classList.add("active");
+});
+
+document.getElementById("back2").addEventListener("click", () => {
+  page2.classList.remove("active");
+  page1.classList.add("active");
+});
+
+document.getElementById("next2").addEventListener("click", () => {
+  const selectedSource = document.querySelector('input[name="source"]:checked');
+  if (!selectedSource) {
+    alert("Please choose an option.");
+    return;
+  }
+
+  if (selectedSource.value === "Other") {
+    // Only show last page if "Other" was chosen
+    page2.classList.remove("active");
+    page3.classList.add("active");
+  } else {
+    // Submit immediately if not "Other"
+    submitToDiscord("");
+  }
+});
+
+document.getElementById("back3").addEventListener("click", () => {
+  page3.classList.remove("active");
+  page2.classList.add("active");
+});
+
+/* Choice button behavior */
+const choiceLabels = document.querySelectorAll(".choice");
+choiceLabels.forEach(label => {
+  label.addEventListener("click", () => {
+    choiceLabels.forEach(l => l.classList.remove("selected"));
+    label.classList.add("selected");
+    const input = label.querySelector("input");
+    if (input) input.checked = true;
+  });
+});
+
+/* Shared submit logic */
+async function submitToDiscord(messageOverride) {
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const selectedSource = document.querySelector('input[name="source"]:checked');
+  const sourceValue = selectedSource ? selectedSource.value : "No answer";
+  const message = messageOverride !== undefined
+    ? messageOverride
+    : document.getElementById("message").value.trim();
+
+  const payload = {
+    content: "**New Form Submission**",
+    embeds: [
+      {
+        title: "Form Data",
+        color: 0x673ab7,
+        fields: [
+          { name: "Name", value: name || "No answer" },
+          { name: "Account", value: email || "No answer" },
+          { name: "Preferred Name", value: sourceValue },
+          { name: "Alt Name", value: message || "No answer" }
+        ]
+      }
+    ]
+  };
+
+  const status = document.getElementById("status");
+
+  try {
+    await fetch(WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    status.textContent = "Sent!";
+    status.style.color = "green";
+    // Reset everything
+    document.getElementById("myForm").reset();
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    choiceLabels.forEach(l => l.classList.remove("selected"));
+    const radios = document.querySelectorAll('input[name="source"]');
+    radios.forEach(r => r.checked = false);
+    page3.classList.remove("active");
+    page1.classList.add("active");
+  } catch (err) {
+    status.textContent = "Error sending form.";
+    status.style.color = "red";
+  }
+}
+
+/* Submit from last page (only when Other was chosen) */
+document.getElementById("myForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  submitToDiscord();
+});
+</script>
+
+</body>
+</html>
