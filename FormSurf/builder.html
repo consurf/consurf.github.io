@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>FormSurf Builder</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f1f3f4;
+    }
+    .topbar {
+      background: #673ab7;
+      color: white;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar input {
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: none;
+      width: 260px;
+    }
+    .topbar label {
+      font-size: 14px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: 220px 1fr 280px;
+      gap: 8px;
+      padding: 8px;
+      height: calc(100vh - 50px);
+      box-sizing: border-box;
+    }
+    .panel {
+      background: white;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .panel h3 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #5f6368;
+    }
+    .panel-body {
+      flex: 1;
+      overflow: auto;
+      font-size: 14px;
+    }
+    .btn {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: none;
+      background: #673ab7;
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .btn.secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+    .btn.small {
+      padding: 3px 6px;
+      font-size: 11px;
+    }
+    .btn + .btn {
+      margin-left: 4px;
+    }
+    .page-item, .block-item {
+      border-radius: 6px;
+      padding: 6px 8px;
+      margin-bottom: 4px;
+      border: 1px solid #dadce0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4px;
+      background: #fafafa;
+    }
+    .page-item.selected, .block-item.selected {
+      border-color: #673ab7;
+      background: #ede7f6;
+    }
+    .page-title, .block-title {
+      flex: 1;
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .controls {
+      display: flex;
+      gap: 2px;
+    }
+    .controls button {
+      padding: 2px 4px;
+      font-size: 10px;
+    }
+    .field-group {
+      margin-bottom: 8px;
+    }
+    .field-group label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 2px;
+      color: #5f6368;
+    }
+    .field-group input[type="text"],
+    .field-group input[type="color"],
+    .field-group select,
+    .field-group textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px 6px;
+      border-radius: 4px;
+      border: 1px solid #dadce0;
+      font-size: 13px;
+    }
+    .field-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+    .field-group input[type="checkbox"] {
+      margin-right: 4px;
+    }
+    .options-list {
+      margin-top: 4px;
+    }
+    .option-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .option-row input[type="text"] {
+      flex: 1;
+    }
+    .json-preview {
+      font-family: "SF Mono", Menlo, Consolas, monospace;
+      font-size: 11px;
+      white-space: pre;
+      background: #111;
+      color: #eee;
+      padding: 8px;
+      border-radius: 6px;
+      margin-top: 6px;
+      max-height: 200px;
+      overflow: auto;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <strong>FormSurf Builder</strong>
+  <label>Title:
+    <input id="formTitle" type="text" placeholder="Untitled Form">
+  </label>
+  <label>Primary Color:
+    <input id="formColor" type="color" value="#673ab7">
+  </label>
+  <label>
+    <input id="formBranding" type="checkbox" checked>
+    Show "Made with FormSurf"
+  </label>
+</div>
+
+<div class="layout">
+  <!-- Pages panel -->
+  <div class="panel">
+    <h3>Pages</h3>
+    <div class="panel-body" id="pagesList"></div>
+    <button class="btn" id="addPageBtn">+ Add Page</button>
+  </div>
+
+  <!-- Blocks panel -->
+  <div class="panel">
+    <h3>Blocks in Page</h3>
+    <div class="panel-body" id="blocksList"></div>
+    <button class="btn" id="addBlockBtn">+ Add Field</button>
+  </div>
+
+  <!-- Settings panel -->
+  <div class="panel">
+    <h3>Field Settings</h3>
+    <div class="panel-body" id="settingsPanel">
+      <p style="font-size:13px;color:#5f6368;">Select a field to edit its settings.</p>
+    </div>
+  </div>
+</div>
+
+<div style="padding:8px;">
+  <h3 style="font-size:13px;color:#5f6368;margin:4px 0;">Schema Preview</h3>
+  <div class="json-preview" id="jsonPreview"></div>
+</div>
+
+<script>
+  // --- Basic ID generator ---
+  function genId(prefix) {
+    return prefix + "_" + Math.random().toString(36).slice(2, 8);
+  }
+
+  // --- Form model ---
+  let form = {
+    title: "Untitled Form",
+    theme: {
+      primaryColor: "#673ab7",
+      bannerImage: null
+    },
+    branding: true,
+    pages: [],
+    submission: {
+      type: "discordWebhook",
+      webhookUrl: "",
+      fieldMap: {}
+    }
+  };
+
+  let selectedPageId = null;
+  let selectedBlockId = null;
+
+  // --- DOM refs ---
+  const pagesListEl = document.getElementById("pagesList");
+  const blocksListEl = document.getElementById("blocksList");
+  const settingsPanelEl = document.getElementById("settingsPanel");
+  const jsonPreviewEl = document.getElementById("jsonPreview");
+  const formTitleEl = document.getElementById("formTitle");
+  const formColorEl = document.getElementById("formColor");
+  const formBrandingEl = document.getElementById("formBranding");
+  const addPageBtn = document.getElementById("addPageBtn");
+  const addBlockBtn = document.getElementById("addBlockBtn");
+
+  // --- Initial page ---
+  function ensureInitialPage() {
+    if (form.pages.length === 0) {
+      const pageId = genId("page");
+      form.pages.push({
+        id: pageId,
+        indicator: "Page description",
+        blocks: []
+      });
+      selectedPageId = pageId;
+    }
+  }
+
+  // --- Helpers to find page/block ---
+  function getSelectedPage() {
+    return form.pages.find(p => p.id === selectedPageId) || null;
+  }
+  function getSelectedBlock() {
+    const page = getSelectedPage();
+    if (!page) return null;
+    return page.blocks.find(b => b.id === selectedBlockId) || null;
+  }
+
+  // --- Render functions ---
+  function renderPages() {
+    pagesListEl.innerHTML = "";
+    form.pages.forEach((page, index) => {
+      const div = document.createElement("div");
+      div.className = "page-item" + (page.id === selectedPageId ? " selected" : "");
+      div.onclick = () => {
+        selectedPageId = page.id;
+        selectedBlockId = null;
+        renderAll();
+      };
+
+      const title = document.createElement("div");
+      title.className = "page-title";
+      title.textContent = `Page ${index + 1}: ${page.indicator || "(no description)"}`;
+
+      const controls = document.createElement("div");
+      controls.className = "controls";
+
+      const upBtn = document.createElement("button");
+      upBtn.className = "btn small secondary";
+      upBtn.textContent = "↑";
+      upBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (index > 0) {
+          const tmp = form.pages[index - 1];
+          form.pages[index - 1] = form.pages[index];
+          form.pages[index] = tmp;
+          renderAll();
+        }
+      };
+
+      const downBtn = document.createElement("button");
+      downBtn.className = "btn small secondary";
+      downBtn.textContent = "↓";
+      downBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (index < form.pages.length - 1) {
+          const tmp = form.pages[index + 1];
+          form.pages[index + 1] = form.pages[index];
+          form.pages[index] = tmp;
+          renderAll();
+        }
+      };
+
+      const delBtn = document.createElement("button");
+      delBtn.className = "btn small secondary";
+      delBtn.textContent = "✕";
+      delBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (form.pages.length === 1) {
+          alert("You must have at least one page.");
+          return;
+        }
+        form.pages.splice(index, 1);
+        if (!form.pages.find(p => p.id === selectedPageId)) {
+          selectedPageId = form.pages[0].id;
+          selectedBlockId = null;
+        }
+        renderAll();
+      };
+
+      controls.appendChild(upBtn);
+      controls.appendChild(downBtn);
+      controls.appendChild(delBtn);
+
+      div.appendChild(title);
+      div.appendChild(controls);
+      pagesListEl.appendChild(div);
+    });
+  }
+
+  function renderBlocks() {
+    blocksListEl.innerHTML = "";
+    const page = getSelectedPage();
+    if (!page) {
+      blocksListEl.innerHTML = "<p style='font-size:13px;color:#5f6368;'>No page selected.</p>";
+      return;
+    }
+
+    page.blocks.forEach((block, index) => {
+      const div = document.createElement("div");
+      div.className = "block-item" + (block.id === selectedBlockId ? " selected" : "");
+      div.onclick = () => {
+        selectedBlockId = block.id;
+        renderSettings();
+      };
+
+      const title = document.createElement("div");
+      title.className = "block-title";
+      title.textContent = `${block.type.toUpperCase()}: ${block.label || "(no label)"}`;
+
+      const controls = document.createElement("div");
+      controls.className = "controls";
+
+      const upBtn = document.createElement("button");
+      upBtn.className = "btn small secondary";
+      upBtn.textContent = "↑";
+      upBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (index > 0) {
+          const tmp = page.blocks[index - 1];
+          page.blocks[index - 1] = page.blocks[index];
+          page.blocks[index] = tmp;
+          renderAll();
+        }
+      };
+
+      const downBtn = document.createElement("button");
+      downBtn.className = "btn small secondary";
+      downBtn.textContent = "↓";
+      downBtn.onclick = (e) => {
+        e.stopPropagation();
+        if (index < page.blocks.length - 1) {
+          const tmp = page.blocks[index + 1];
+          page.blocks[index + 1] = page.blocks[index];
+          page.blocks[index] = tmp;
+          renderAll();
+        }
+      };
+
+      const delBtn = document.createElement("button");
+      delBtn.className = "btn small secondary";
+      delBtn.textContent = "✕";
+      delBtn.onclick = (e) => {
+        e.stopPropagation();
+        page.blocks.splice(index, 1);
+        if (!page.blocks.find(b => b.id === selectedBlockId)) {
+          selectedBlockId = page.blocks[0]?.id || null;
+        }
+        renderAll();
+      };
+
+      controls.appendChild(upBtn);
+      controls.appendChild(downBtn);
+      controls.appendChild(delBtn);
+
+      div.appendChild(title);
+      div.appendChild(controls);
+      blocksListEl.appendChild(div);
+    });
+
+    if (page.blocks.length === 0) {
+      blocksListEl.innerHTML = "<p style='font-size:13px;color:#5f6368;'>No fields yet. Click “+ Add Field”.</p>";
+    }
+  }
+
+  function renderSettings() {
+    settingsPanelEl.innerHTML = "";
+    const page = getSelectedPage();
+    const block = getSelectedBlock();
+
+    if (!page) {
+      settingsPanelEl.innerHTML = "<p style='font-size:13px;color:#5f6368;'>No page selected.</p>";
+      return;
+    }
+    if (!block) {
+      // Page-level settings
+      const wrap = document.createElement("div");
+
+      const fg = document.createElement("div");
+      fg.className = "field-group";
+      const lbl = document.createElement("label");
+      lbl.textContent = "Page description (indicator)";
+      const inp = document.createElement("input");
+      inp.type = "text";
+      inp.value = page.indicator || "";
+      inp.oninput = () => {
+        page.indicator = inp.value;
+        renderPages();
+        renderJSON();
+      };
+      fg.appendChild(lbl);
+      fg.appendChild(inp);
+      wrap.appendChild(fg);
+
+      settingsPanelEl.appendChild(wrap);
+      return;
+    }
+
+    // Field settings
+    const wrap = document.createElement("div");
+
+    // Type
+    const typeGroup = document.createElement("div");
+    typeGroup.className = "field-group";
+    const typeLabel = document.createElement("label");
+    typeLabel.textContent = "Field type";
+    const typeSelect = document.createElement("select");
+    ["text","textarea","choice","checkboxes","dropdown"].forEach(t => {
+      const opt = document.createElement("option");
+      opt.value = t;
+      opt.textContent = t;
+      if (block.type === t) opt.selected = true;
+      typeSelect.appendChild(opt);
+    });
+    typeSelect.onchange = () => {
+      block.type = typeSelect.value;
+      if (block.type === "choice" || block.type === "checkboxes" || block.type === "dropdown") {
+        if (!block.options) {
+          block.options = [
+            { id: genId("opt"), label: "Option 1" },
+            { id: genId("opt"), label: "Option 2" }
+          ];
+        }
+      } else {
+        delete block.options;
+      }
+      renderBlocks();
+      renderSettings();
+      renderJSON();
+    };
+    typeGroup.appendChild(typeLabel);
+    typeGroup.appendChild(typeSelect);
+    wrap.appendChild(typeGroup);
+
+    // Label
+    const labelGroup = document.createElement("div");
+    labelGroup.className = "field-group";
+    const labelLabel = document.createElement("label");
+    labelLabel.textContent = "Label";
+    const labelInput = document.createElement("input");
+    labelInput.type = "text";
+    labelInput.value = block.label || "";
+    labelInput.oninput = () => {
+      block.label = labelInput.value;
+      renderBlocks();
+      renderJSON();
+    };
+    labelGroup.appendChild(labelLabel);
+    labelGroup.appendChild(labelInput);
+    wrap.appendChild(labelGroup);
+
+    // Placeholder (for text/textarea)
+    if (block.type === "text" || block.type === "textarea") {
+      const phGroup = document.createElement("div");
+      phGroup.className = "field-group";
+      const phLabel = document.createElement("label");
+      phLabel.textContent = "Placeholder";
+      const phInput = document.createElement("input");
+      phInput.type = "text";
+      phInput.value = block.placeholder || "";
+      phInput.oninput = () => {
+        block.placeholder = phInput.value;
+        renderJSON();
+      };
+      phGroup.appendChild(phLabel);
+      phGroup.appendChild(phInput);
+      wrap.appendChild(phGroup);
+    }
+
+    // Required
+    const reqGroup = document.createElement("div");
+    reqGroup.className = "field-group";
+    const reqLabel = document.createElement("label");
+    const reqCheckbox = document.createElement("input");
+    reqCheckbox.type = "checkbox";
+    reqCheckbox.checked = !!block.required;
+    reqCheckbox.onchange = () => {
+      block.required = reqCheckbox.checked;
+      renderJSON();
+    };
+    reqLabel.appendChild(reqCheckbox);
+    reqLabel.appendChild(document.createTextNode("Required"));
+    reqGroup.appendChild(reqLabel);
+    wrap.appendChild(reqGroup);
+
+    // Options (for choice/checkboxes/dropdown)
+    if (block.type === "choice" || block.type === "checkboxes" || block.type === "dropdown") {
+      const optGroup = document.createElement("div");
+      optGroup.className = "field-group";
+      const optLabel = document.createElement("label");
+      optLabel.textContent = "Options";
+      optGroup.appendChild(optLabel);
+
+      const list = document.createElement("div");
+      list.className = "options-list";
+
+      (block.options || []).forEach((opt, idx) => {
+        const row = document.createElement("div");
+        row.className = "option-row";
+
+        const optInput = document.createElement("input");
+        optInput.type = "text";
+        optInput.value = opt.label || "";
+        optInput.oninput = () => {
+          opt.label = optInput.value;
+          renderJSON();
+        };
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "btn small secondary";
+        delBtn.textContent = "✕";
+        delBtn.onclick = (e) => {
+          e.stopPropagation();
+          block.options.splice(idx, 1);
+          renderSettings();
+          renderJSON();
+        };
+
+        row.appendChild(optInput);
+        row.appendChild(delBtn);
+        list.appendChild(row);
+      });
+
+      const addOptBtn = document.createElement("button");
+      addOptBtn.className = "btn small";
+      addOptBtn.textContent = "+ Add option";
+      addOptBtn.onclick = (e) => {
+        e.preventDefault();
+        if (!block.options) block.options = [];
+        block.options.push({ id: genId("opt"), label: "New option" });
+        renderSettings();
+        renderJSON();
+      };
+
+      optGroup.appendChild(list);
+      optGroup.appendChild(addOptBtn);
+      wrap.appendChild(optGroup);
+    }
+
+    settingsPanelEl.appendChild(wrap);
+  }
+
+  function renderJSON() {
+    jsonPreviewEl.textContent = JSON.stringify(form, null, 2);
+  }
+
+  function renderAll() {
+    renderPages();
+    renderBlocks();
+    renderSettings();
+    renderJSON();
+  }
+
+  // --- Event wiring ---
+  addPageBtn.onclick = () => {
+    const pageId = genId("page");
+    form.pages.push({
+      id: pageId,
+      indicator: "New page",
+      blocks: []
+    });
+    selectedPageId = pageId;
+    selectedBlockId = null;
+    renderAll();
+  };
+
+  addBlockBtn.onclick = () => {
+    const page = getSelectedPage();
+    if (!page) return;
+    const blockId = genId("field");
+    page.blocks.push({
+      id: blockId,
+      type: "text",
+      label: "New field",
+      placeholder: "",
+      required: false
+    });
+    selectedBlockId = blockId;
+    renderAll();
+  };
+
+  formTitleEl.oninput = () => {
+    form.title = formTitleEl.value || "Untitled Form";
+    renderJSON();
+  };
+
+  formColorEl.oninput = () => {
+    form.theme.primaryColor = formColorEl.value;
+    renderJSON();
+  };
+
+  formBrandingEl.onchange = () => {
+    form.branding = formBrandingEl.checked;
+    renderJSON();
+  };
+
+  // --- Init ---
+  ensureInitialPage();
+  formTitleEl.value = form.title;
+  renderAll();
+</script>
+
+</body>
+</html>
