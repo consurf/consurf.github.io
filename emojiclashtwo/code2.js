@@ -47,6 +47,12 @@ gdjs.copyArray(runtimeScene.getObjects("BG"), gdjs.Main_32MenuCode.GDBGObjects1)
     gdjs.Main_32MenuCode.GDBGObjects1[i].getBehavior("Tween").addObjectOpacityTween2("fadeo", 0, "linear", 1, true);
 }
 }
+{gdjs.evtTools.firebaseTools.analytics.log("Menu", "");
+}
+{gdjs.evtTools.firebaseTools.remoteConfig.setDefaultConfig(runtimeScene.getScene().getVariables().getFromIndex(0));
+}
+{firebase.remoteConfig().fetchAndActivate();
+}
 }
 
 }
@@ -60,6 +66,21 @@ let isConditionTrue_0 = false;
 {gdjs.evtTools.camera.setLayerEffectDoubleParameter(runtimeScene, "", "Effect", "brightness", gdjs.evtTools.tween.getValue(runtimeScene, "Bright"));
 }
 {gdjs.evtTools.camera.setLayerEffectDoubleParameter(runtimeScene, "", "Effect", "brightness", gdjs.evtTools.tween.getValue(runtimeScene, "Bright"));
+}
+}
+
+}
+
+
+{
+
+
+let isConditionTrue_0 = false;
+{
+gdjs.copyArray(runtimeScene.getObjects("Logo"), gdjs.Main_32MenuCode.GDLogoObjects1);
+{for(var i = 0, len = gdjs.Main_32MenuCode.GDLogoObjects1.length ;i < len;++i) {
+    gdjs.Main_32MenuCode.GDLogoObjects1[i].getBehavior("Text").setText(firebase.remoteConfig().getString("name"));
+}
 }
 }
 

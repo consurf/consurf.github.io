@@ -1,45 +1,26 @@
-gdjs.Simply_32Jam_32RoomCode = {};
-gdjs.Simply_32Jam_32RoomCode.localVariables = [];
-gdjs.Simply_32Jam_32RoomCode.idToCallbackMap = new Map();
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects2= [];
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects1= [];
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects2= [];
+gdjs.Online_32Mode_32PrepCode = {};
+gdjs.Online_32Mode_32PrepCode.localVariables = [];
+gdjs.Online_32Mode_32PrepCode.idToCallbackMap = new Map();
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1= [];
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects2= [];
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects1= [];
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects2= [];
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects1= [];
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects2= [];
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1= [];
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects2= [];
 
 
-gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects = Hashtable.newFrom({"PlayerBullet": gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1});
-gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects = Hashtable.newFrom({"PlayerBullet": gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1});
-gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDEnemyObjects1Objects = Hashtable.newFrom({"Enemy": gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1});
-gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects = Hashtable.newFrom({"PlayerBullet": gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1});
-gdjs.Simply_32Jam_32RoomCode.eventsList0 = function(runtimeScene) {
+gdjs.Online_32Mode_32PrepCode.eventsList0 = function(runtimeScene) {
 
 {
 
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
+isConditionTrue_0 = gdjs.evtTools.firebaseTools.auth.isAuthenticated();
 if (isConditionTrue_0) {
-gdjs.copyArray(runtimeScene.getObjects("Camera"), gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1);
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1[i].hide();
-}
-}
-{gdjs.evtTools.sound.playSound(runtimeScene, "Click.wav", false, 100, 1);
-}
-{gdjs.evtsExt__CursorType__ChangeCursorType.func(runtimeScene, "crosshair", null);
+{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Main Menu", false);
 }
 }
 
@@ -48,36 +29,22 @@ gdjs.copyArray(runtimeScene.getObjects("Camera"), gdjs.Simply_32Jam_32RoomCode.G
 
 {
 
-
-let isConditionTrue_0 = false;
-{
-gdjs.copyArray(runtimeScene.getObjects("RepeatingBackground"), gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1);
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1[i].setCenterPositionInScene(gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0) - gdjs.evtTools.common.mod(gdjs.evtTools.camera.getCameraX(runtimeScene, "", 0), 320) + 160,gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0) - gdjs.evtTools.common.mod(gdjs.evtTools.camera.getCameraY(runtimeScene, "", 0), 320) - 320);
-}
-}
-}
-
-}
-
-
-{
-
+gdjs.copyArray(runtimeScene.getObjects("SignUp"), gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1);
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.input.isMouseButtonPressed(runtimeScene, "Left");
+for (var i = 0, k = 0, l = gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1.length;i<l;++i) {
+    if ( gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1[i].IsClicked(null) ) {
+        isConditionTrue_0 = true;
+        gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1[k] = gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1[i];
+        ++k;
+    }
+}
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1.length = k;
 if (isConditionTrue_0) {
-gdjs.copyArray(runtimeScene.getObjects("Player"), gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1);
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
-
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getBehavior("FireBullet").FireTowardPosition((gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getCenterXInScene()), (gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getCenterYInScene()), gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects, gdjs.evtTools.input.getCursorX(runtimeScene, "", 0), gdjs.evtTools.input.getCursorY(runtimeScene, "", 0), 300, null);
-}
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1[i].getBehavior("Object3D").setCenterZInScene((( gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length === 0 ) ? 0 :gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[0].getBehavior("Object3D").getDepth()) / 2);
-}
+gdjs.copyArray(runtimeScene.getObjects("Email"), gdjs.Online_32Mode_32PrepCode.GDEmailObjects1);
+gdjs.copyArray(runtimeScene.getObjects("Password"), gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1);
+{gdjs.evtTools.firebaseTools.auth.createAccountWithEmail((( gdjs.Online_32Mode_32PrepCode.GDEmailObjects1.length === 0 ) ? "" :gdjs.Online_32Mode_32PrepCode.GDEmailObjects1[0].getText()), (( gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1.length === 0 ) ? "" :gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1[0].getText()), gdjs.VariablesContainer.badVariable);
 }
 }
 
@@ -86,26 +53,22 @@ gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
 
 {
 
-gdjs.copyArray(runtimeScene.getObjects("Enemy"), gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1);
-gdjs.copyArray(runtimeScene.getObjects("PlayerBullet"), gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1);
+gdjs.copyArray(runtimeScene.getObjects("LogIn"), gdjs.Online_32Mode_32PrepCode.GDLogInObjects1);
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.object.hitBoxesCollisionTest(gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects, gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDEnemyObjects1Objects, false, runtimeScene, false);
+for (var i = 0, k = 0, l = gdjs.Online_32Mode_32PrepCode.GDLogInObjects1.length;i<l;++i) {
+    if ( gdjs.Online_32Mode_32PrepCode.GDLogInObjects1[i].IsClicked(null) ) {
+        isConditionTrue_0 = true;
+        gdjs.Online_32Mode_32PrepCode.GDLogInObjects1[k] = gdjs.Online_32Mode_32PrepCode.GDLogInObjects1[i];
+        ++k;
+    }
+}
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects1.length = k;
 if (isConditionTrue_0) {
-/* Reuse gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1 */
-/* Reuse gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1 */
-{gdjs.evtTools.sound.playSound(runtimeScene, "Metal Hit 4.mp3", false, 100, gdjs.randomFloatInRange(1.5, 2));
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1[i].returnVariable(gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1[i].getVariables().getFromIndex(0)).sub(1);
-}
-}
-{runtimeScene.getScene().getVariables().getFromIndex(0).sub(0.1);
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1[i].deleteFromScene(runtimeScene);
-}
+gdjs.copyArray(runtimeScene.getObjects("Email"), gdjs.Online_32Mode_32PrepCode.GDEmailObjects1);
+gdjs.copyArray(runtimeScene.getObjects("Password"), gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1);
+{gdjs.evtTools.firebaseTools.auth.signInWithEmail((( gdjs.Online_32Mode_32PrepCode.GDEmailObjects1.length === 0 ) ? "" :gdjs.Online_32Mode_32PrepCode.GDEmailObjects1[0].getText()), (( gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1.length === 0 ) ? "" :gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1[0].getText()), gdjs.VariablesContainer.badVariable);
 }
 }
 
@@ -117,26 +80,9 @@ if (isConditionTrue_0) {
 
 let isConditionTrue_0 = false;
 isConditionTrue_0 = false;
-isConditionTrue_0 = gdjs.evtTools.input.isKeyPressed(runtimeScene, "Space");
+isConditionTrue_0 = gdjs.evtTools.input.wasKeyJustPressed(runtimeScene, "g");
 if (isConditionTrue_0) {
-gdjs.copyArray(runtimeScene.getObjects("Player"), gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1);
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
-
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getBehavior("FireBullet").SetBulletQuantityOp(45, null);
-}
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getBehavior("FireBullet").FireTowardPosition((gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getCenterXInScene()), (gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getCenterYInScene()), gdjs.Simply_32Jam_32RoomCode.mapOfGDgdjs_9546Simply_959532Jam_959532RoomCode_9546GDPlayerBulletObjects1Objects, gdjs.evtTools.input.getCursorX(runtimeScene, "", 0), gdjs.evtTools.input.getCursorY(runtimeScene, "", 0), 300, null);
-}
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1[i].getBehavior("Object3D").setCenterZInScene((( gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length === 0 ) ? 0 :gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[0].getBehavior("Object3D").getDepth()) / 2);
-}
-}
-{for(var i = 0, len = gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length ;i < len;++i) {
-    gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1[i].getBehavior("FireBullet").SetBulletQuantityOp(1, null);
-}
+{gdjs.evtTools.firebaseTools.auth.signInWithProvider("google", gdjs.VariablesContainer.badVariable);
 }
 }
 
@@ -145,47 +91,31 @@ gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
 
 };
 
-gdjs.Simply_32Jam_32RoomCode.func = function(runtimeScene) {
+gdjs.Online_32Mode_32PrepCode.func = function(runtimeScene) {
 runtimeScene.getOnceTriggers().startNewFrame();
 
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects2.length = 0;
 
-gdjs.Simply_32Jam_32RoomCode.eventsList0(runtimeScene);
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDMoveJoystickObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCameraObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDRepeatingBackgroundObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayer3DoObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDEnemyObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerBulletObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDPlayerObjects2.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects1.length = 0;
-gdjs.Simply_32Jam_32RoomCode.GDCursorObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.eventsList0(runtimeScene);
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDSignUpObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDLogInObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDEmailObjects2.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects1.length = 0;
+gdjs.Online_32Mode_32PrepCode.GDPasswordObjects2.length = 0;
 
 
 return;
 
 }
 
-gdjs['Simply_32Jam_32RoomCode'] = gdjs.Simply_32Jam_32RoomCode;
+gdjs['Online_32Mode_32PrepCode'] = gdjs.Online_32Mode_32PrepCode;
