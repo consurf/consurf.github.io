@@ -26,7 +26,7 @@ if (isConditionTrue_0) {
 }
 {gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Main Menu", false);
 }
-{gdjs.evtTools.sound.playSound(runtimeScene, "Cancel2.mp3", false, 100, 1);
+{gdjs.evtTools.sound.playSound(runtimeScene, "Back.wav", false, 100, 1);
 }
 }
 

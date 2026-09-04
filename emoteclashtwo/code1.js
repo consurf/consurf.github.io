@@ -23,13 +23,13 @@ gdjs.LogosCode.GDSimplyProdObjects4= [];
 gdjs.LogosCode.GDSimplyProdObjects5= [];
 
 
-gdjs.LogosCode.asyncCallback20522980 = function (runtimeScene, asyncObjectsList) {
+gdjs.LogosCode.asyncCallback20957876 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 {gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Main Menu", false);
 }
 gdjs.LogosCode.localVariables.length = 0;
 }
-gdjs.LogosCode.idToCallbackMap.set(20522980, gdjs.LogosCode.asyncCallback20522980);
+gdjs.LogosCode.idToCallbackMap.set(20957876, gdjs.LogosCode.asyncCallback20957876);
 gdjs.LogosCode.eventsList0 = function(runtimeScene, asyncObjectsList) {
 
 {
@@ -40,14 +40,14 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.LogosCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(1), (runtimeScene) => (gdjs.LogosCode.asyncCallback20522980(runtimeScene, asyncObjectsList)), 20522980, asyncObjectsList);
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(1), (runtimeScene) => (gdjs.LogosCode.asyncCallback20957876(runtimeScene, asyncObjectsList)), 20957876, asyncObjectsList);
 }
 }
 
 }
 
 
-};gdjs.LogosCode.asyncCallback20523532 = function (runtimeScene, asyncObjectsList) {
+};gdjs.LogosCode.asyncCallback20958108 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 {gdjs.evtTools.tween.addLayoutValueTween(runtimeScene, "Bright", 1, 0, "linear", 1, false);
 }
@@ -56,7 +56,7 @@ asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 gdjs.LogosCode.eventsList0(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.LogosCode.localVariables.length = 0;
 }
-gdjs.LogosCode.idToCallbackMap.set(20523532, gdjs.LogosCode.asyncCallback20523532);
+gdjs.LogosCode.idToCallbackMap.set(20958108, gdjs.LogosCode.asyncCallback20958108);
 gdjs.LogosCode.eventsList1 = function(runtimeScene, asyncObjectsList) {
 
 {
@@ -67,14 +67,14 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.LogosCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(3), (runtimeScene) => (gdjs.LogosCode.asyncCallback20523532(runtimeScene, asyncObjectsList)), 20523532, asyncObjectsList);
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(3), (runtimeScene) => (gdjs.LogosCode.asyncCallback20958108(runtimeScene, asyncObjectsList)), 20958108, asyncObjectsList);
 }
 }
 
 }
 
 
-};gdjs.LogosCode.asyncCallback20522748 = function (runtimeScene, asyncObjectsList) {
+};gdjs.LogosCode.asyncCallback20957780 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 {gdjs.evtTools.camera.hideLayer(runtimeScene, "EmojiPublishingLogo");
 }
@@ -87,7 +87,7 @@ asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 gdjs.LogosCode.eventsList1(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.LogosCode.localVariables.length = 0;
 }
-gdjs.LogosCode.idToCallbackMap.set(20522748, gdjs.LogosCode.asyncCallback20522748);
+gdjs.LogosCode.idToCallbackMap.set(20957780, gdjs.LogosCode.asyncCallback20957780);
 gdjs.LogosCode.eventsList2 = function(runtimeScene, asyncObjectsList) {
 
 {
@@ -98,14 +98,14 @@ const parentAsyncObjectsList = asyncObjectsList;
 {
 const asyncObjectsList = gdjs.LongLivedObjectsList.from(parentAsyncObjectsList);
 asyncObjectsList.backupLocalVariablesContainers(gdjs.LogosCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(1), (runtimeScene) => (gdjs.LogosCode.asyncCallback20522748(runtimeScene, asyncObjectsList)), 20522748, asyncObjectsList);
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(1), (runtimeScene) => (gdjs.LogosCode.asyncCallback20957780(runtimeScene, asyncObjectsList)), 20957780, asyncObjectsList);
 }
 }
 
 }
 
 
-};gdjs.LogosCode.asyncCallback20522356 = function (runtimeScene, asyncObjectsList) {
+};gdjs.LogosCode.asyncCallback20957132 = function (runtimeScene, asyncObjectsList) {
 asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 {gdjs.evtTools.tween.addLayoutValueTween(runtimeScene, "Bright", 1, 0, "linear", 1, false);
 }
@@ -114,7 +114,7 @@ asyncObjectsList.restoreLocalVariablesContainers(gdjs.LogosCode.localVariables);
 gdjs.LogosCode.eventsList2(runtimeScene, asyncObjectsList);} //End of subevents
 gdjs.LogosCode.localVariables.length = 0;
 }
-gdjs.LogosCode.idToCallbackMap.set(20522356, gdjs.LogosCode.asyncCallback20522356);
+gdjs.LogosCode.idToCallbackMap.set(20957132, gdjs.LogosCode.asyncCallback20957132);
 gdjs.LogosCode.eventsList3 = function(runtimeScene) {
 
 {
@@ -124,7 +124,7 @@ gdjs.LogosCode.eventsList3 = function(runtimeScene) {
 {
 const asyncObjectsList = new gdjs.LongLivedObjectsList();
 asyncObjectsList.backupLocalVariablesContainers(gdjs.LogosCode.localVariables);
-runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(3), (runtimeScene) => (gdjs.LogosCode.asyncCallback20522356(runtimeScene, asyncObjectsList)), 20522356, asyncObjectsList);
+runtimeScene.getAsyncTasksManager().addTask(gdjs.evtTools.runtimeScene.wait(3), (runtimeScene) => (gdjs.LogosCode.asyncCallback20957132(runtimeScene, asyncObjectsList)), 20957132, asyncObjectsList);
 }
 }
 
@@ -142,7 +142,7 @@ isConditionTrue_0 = gdjs.evtTools.runtimeScene.sceneJustBegins(runtimeScene);
 if (isConditionTrue_0) {
 {gdjs.evtTools.firebaseTools.analytics.log("Intro", "");
 }
-{gdjs.evtTools.sound.playMusic(runtimeScene, "1c67c5b43b781d75dde2857a69095dd9232b1ef5e65327f81fe0c846696c538b_New Adventure.aac", true, 100, 1);
+{gdjs.evtTools.sound.playMusic(runtimeScene, "Bouncing Around.mp3", true, 100, 1);
 }
 {gdjs.evtTools.tween.addLayoutValueTween(runtimeScene, "Bright", 0, 1, "linear", 1, false);
 }

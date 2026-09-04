@@ -20,7 +20,7 @@ gdjs.evtsExt__A3F__ChangeBlendModeV2.GDObjectObjects2= [];
 gdjs.evtsExt__A3F__ChangeBlendModeV2.GDObjectObjects3= [];
 
 
-gdjs.evtsExt__A3F__ChangeBlendModeV2.userFunc0xe688f0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__ChangeBlendModeV2.userFunc0xb3a650 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -64,7 +64,7 @@ gdjs.copyArray(gdjs.evtsExt__A3F__ChangeBlendModeV2.GDObjectObjects2, gdjs.evtsE
 
 
 const objects = gdjs.evtsExt__A3F__ChangeBlendModeV2.GDObjectObjects3;
-gdjs.evtsExt__A3F__ChangeBlendModeV2.userFunc0xe688f0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__ChangeBlendModeV2.userFunc0xb3a650(runtimeScene, objects, eventsFunctionContext);
 
 }
 
