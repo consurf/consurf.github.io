@@ -20,7 +20,7 @@ gdjs.evtsExt__A3F__ChangeChildAngle.GDObjectObjects2= [];
 gdjs.evtsExt__A3F__ChangeChildAngle.GDObjectObjects3= [];
 
 
-gdjs.evtsExt__A3F__ChangeChildAngle.userFunc0xc18578 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__ChangeChildAngle.userFunc0xbf0588 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -44,7 +44,7 @@ gdjs.copyArray(gdjs.evtsExt__A3F__ChangeChildAngle.GDObjectObjects2, gdjs.evtsEx
 
 
 const objects = gdjs.evtsExt__A3F__ChangeChildAngle.GDObjectObjects3;
-gdjs.evtsExt__A3F__ChangeChildAngle.userFunc0xc18578(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__ChangeChildAngle.userFunc0xbf0588(runtimeScene, objects, eventsFunctionContext);
 
 }
 

@@ -370,7 +370,9 @@ isConditionTrue_0 = false;
 isConditionTrue_0 = gdjs.evtTools.input.isKeyPressed(runtimeScene, "j");
 }
 if (isConditionTrue_0) {
-{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Online Mode Prep", true);
+{firebase.auth().signOut();
+}
+{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Click", true);
 }
 }
 

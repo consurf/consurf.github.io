@@ -9,7 +9,7 @@ gdjs.evtsExt__A3F__Initialize = {};
 gdjs.evtsExt__A3F__Initialize.idToCallbackMap = new Map();
 
 
-gdjs.evtsExt__A3F__Initialize.userFunc0x1ec8648 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__A3F__Initialize.userFunc0xa289a8 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 if (gdjs._A3F) return;
 gdjs._A3F = {};
@@ -72,7 +72,7 @@ gdjs._A3F.DumpChildren = function(Obj3D, Depth = 0, Lines = []) {
 
 
 };
-gdjs.evtsExt__A3F__Initialize.userFunc0x19a0ce0 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__A3F__Initialize.userFunc0x1eba8b0 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 if (gdjs._A3F.Vec) return;
 //
@@ -93,7 +93,7 @@ gdjs._A3F.Eul2 = new THREE.Euler();
 
 
 };
-gdjs.evtsExt__A3F__Initialize.userFunc0xb0f6a8 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
+gdjs.evtsExt__A3F__Initialize.userFunc0x181e9b0 = function GDJSInlineCode(runtimeScene, eventsFunctionContext) {
 "use strict";
 if (gdjs._A3F.AudioBufferCache) return;
 /**
@@ -191,7 +191,7 @@ gdjs.evtsExt__A3F__Initialize.eventsList0 = function(runtimeScene, eventsFunctio
 {
 
 
-gdjs.evtsExt__A3F__Initialize.userFunc0x1ec8648(runtimeScene, eventsFunctionContext);
+gdjs.evtsExt__A3F__Initialize.userFunc0xa289a8(runtimeScene, eventsFunctionContext);
 
 }
 
@@ -199,7 +199,7 @@ gdjs.evtsExt__A3F__Initialize.userFunc0x1ec8648(runtimeScene, eventsFunctionCont
 {
 
 
-gdjs.evtsExt__A3F__Initialize.userFunc0x19a0ce0(runtimeScene, eventsFunctionContext);
+gdjs.evtsExt__A3F__Initialize.userFunc0x1eba8b0(runtimeScene, eventsFunctionContext);
 
 }
 
@@ -207,7 +207,7 @@ gdjs.evtsExt__A3F__Initialize.userFunc0x19a0ce0(runtimeScene, eventsFunctionCont
 {
 
 
-gdjs.evtsExt__A3F__Initialize.userFunc0xb0f6a8(runtimeScene, eventsFunctionContext);
+gdjs.evtsExt__A3F__Initialize.userFunc0x181e9b0(runtimeScene, eventsFunctionContext);
 
 }
 

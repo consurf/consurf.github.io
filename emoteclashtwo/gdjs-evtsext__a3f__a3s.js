@@ -73,7 +73,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.idToCallbackMap = new Map(
 gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.userFunc0x1ebbfd0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.userFunc0x1f2d178 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -88,7 +88,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.eventsList0 = function(run
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.GDObjectObjects1;
-gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.userFunc0x1ebbfd0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__A3S.A3S.prototype.onCreatedContext.userFunc0x1f2d178(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -174,7 +174,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.idToCallbackMap = new Map(
 gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.userFunc0x1ebbfd0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.userFunc0x1f25228 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -193,7 +193,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.eventsList0 = function(run
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.GDObjectObjects1;
-gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.userFunc0x1ebbfd0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__A3S.A3S.prototype.onDestroyContext.userFunc0x1f25228(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -279,7 +279,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.idToCallbackMap = new Map();
 gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.userFunc0x1ebbfd0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.userFunc0x1f25228 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -341,7 +341,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.eventsList0 = function(runtimeS
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.GDObjectObjects1;
-gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.userFunc0x1ebbfd0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__A3S.A3S.prototype.PlayContext.userFunc0x1f25228(runtimeScene, objects, eventsFunctionContext);
 
 }
 
@@ -431,7 +431,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.idToCallbackMap = new Map();
 gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.GDObjectObjects1= [];
 
 
-gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.userFunc0x1ebbfd0 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
+gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.userFunc0x1f25228 = function GDJSInlineCode(runtimeScene, objects, eventsFunctionContext) {
 "use strict";
 const Object2D = objects[0];
 const Object3D = Object2D.get3DRendererObject();
@@ -449,7 +449,7 @@ gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.eventsList0 = function(runti
 gdjs.copyArray(eventsFunctionContext.getObjects("Object"), gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.GDObjectObjects1);
 
 const objects = gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.GDObjectObjects1;
-gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.userFunc0x1ebbfd0(runtimeScene, objects, eventsFunctionContext);
+gdjs.evtsExt__A3F__A3S.A3S.prototype.StopAllContext.userFunc0x1f25228(runtimeScene, objects, eventsFunctionContext);
 
 }
 

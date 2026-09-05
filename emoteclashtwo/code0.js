@@ -22,7 +22,7 @@ for (var i = 0, k = 0, l = gdjs.ClickCode.GDPlayBTNObjects1.length;i<l;++i) {
 }
 gdjs.ClickCode.GDPlayBTNObjects1.length = k;
 if (isConditionTrue_0) {
-{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Logos", false);
+{gdjs.evtTools.runtimeScene.replaceScene(runtimeScene, "Online Mode Prep", false);
 }
 }
 
